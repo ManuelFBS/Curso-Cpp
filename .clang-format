@@ -1,0 +1,11 @@
+BasedOnStyle: Google
+Language: Cpp
+IndentWidth: 8
+ColumnLimit: 80
+UseTab: Never
+TabWidth: 8
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: true
+PointerAlignment: Left
+SortIncludes: true

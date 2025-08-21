@@ -1,11 +1,13 @@
 /* stringstream*/
-#include <iostream>
-#include <string>
-#include <sstream>
 #include <windows.h>
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
 using namespace std;
 
-int main() 
+int main()
 {
         string myString;
         float price = 0;
@@ -19,8 +21,7 @@ int main()
         getline(cin, myString);
         stringstream(myString) >> quantity;
         //
-        cout << "Precio total: " << price * quantity << '\n'
-             << endl;
+        cout << "Precio total: " << price * quantity << '\n' << endl;
 
         return 0;
 }

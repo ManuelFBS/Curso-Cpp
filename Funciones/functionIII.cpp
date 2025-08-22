@@ -14,25 +14,6 @@ using namespace std;
 string emptySpaces = string(12, ' ');
 string uniqueSpace = string(1, ' ');
 
-// Colores básicos...
-#define COLOR_ROJO 4
-#define COLOR_AZUL 1
-#define COLOR_VERDE 2
-#define COLOR_AMARILLO 6
-#define COLOR_MAGENTA 5
-#define COLOR_CIAN 3
-#define COLOR_BLANCO 7
-#define COLOR_NEGRO 0
-
-// Colores intensos...
-#define COLOR_ROJO_INTENSO 12
-#define COLOR_AZUL_INTENSO 9
-#define COLOR_VERDE_INTENSO 10
-#define COLOR_AMARILLO_INTENSO 14
-#define COLOR_MAGENTA_INTENSO 13
-#define COLOR_CIAN_INTENSO 11
-#define COLOR_BLANCO_INTENSO 15
-
 double degrees_Fahrenheit(double degrees)
 {
         double fahrenheit = 0;
@@ -51,4 +32,55 @@ double degrees_Celsius(double degrees)
         return celsius;
 }
 
-int main() {}
+void clearScreen()
+{
+#ifdef _WIN
+        system("cls");  // Para Windows...
+#else
+        system("clear");  // Para Linux / Mac...
+#endif
+}
+
+void clearInputBuffer()
+{
+        cin.clear();  // Limpia los flags de error...
+        cin.ignore(numeric_limits<streamsize>::max(),
+                   '\n');  // Limpia el buffer...
+}
+
+int main()
+{
+        SetConsoleOutputCP(65001);
+
+        char resp = 's';
+        char opt = 'N';
+        double degrees = 0;
+        double convertedDegrees = 0;
+
+        do
+        {
+                cout << "\n\n"
+                     << " ******* CONVERSION DE TEMPERATURAS *******" << "\n\n";
+
+                cout << "Convertir Grados Celsius a Fahrenheit ['F']" << '\n';
+                cout << "Convertir Grados Fahrenheit a Celsius ['C']" << '\n';
+
+                cout << "Seleccione una opción: ";
+                cin >> opt;
+                //
+                cout << "\n\n"
+                     << "Introduzca los °" << (char)toupper(opt) << " ";
+                cin >> degrees;
+                //
+                if (opt == 'F' || opt == 'f')
+                {
+                        convertedDegrees = degrees_Fahrenheit(degrees);
+                }
+
+                cout << "\n\n" << "Desea hacer alguna otra conversión? ";
+                cin >> resp;
+
+        } while (resp == 's' || resp == 'S');
+
+        return 0;
+}

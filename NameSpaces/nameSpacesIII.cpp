@@ -1,55 +1,47 @@
+/* Versión modificada y reducida es funcional... */
 #include <windows.h>
-//
-#include <boost/math/special_functions/atanh.hpp>
+
+#include <boost/math/constants/constants.hpp>
 #include <boost/multiprecision/cpp_dec_float.hpp>
 #include <iomanip>
 #include <iostream>
 
-using namespace boost::multiprecision;
-using namespace boost::math;
 using namespace std;
+using namespace boost::multiprecision;
+using namespace boost::math::constants;
 
-namespace CalculoPrecisoPI
-{
-// Template para cálculo preciso con arctan
-template <int Decimales>
-cpp_dec_float<Decimales> calcularPIconArctan()
-{
-        using precision_type = cpp_dec_float<Decimales>;
-
-        // 4 * atan(1) con alta precisión
-        precision_type uno = 1;
-        return 4 * atan(uno);
-}
-
-// Comparación con el valor de Boost
-template <int Decimales>
-void compararMetodos()
-{
-        using precision_type = cpp_dec_float<Decimales>;
-
-        precision_type pi_arctan = calcularPIconArctan<Decimales>();
-        precision_type pi_boost = constants::pi<precision_type>();
-
-        cout << "Precisión: " << Decimales << " decimales" << endl;
-        cout << "π con arctan(1): " << setprecision(Decimales + 1) << pi_arctan
-             << endl;
-        cout << "π de Boost:      " << setprecision(Decimales + 1) << pi_boost
-             << endl;
-        cout << "Diferencia:      " << (pi_arctan - pi_boost) << endl;
-        cout << "----------------------------------------" << endl;
-}
-}  // namespace CalculoPrecisoPI
+cpp_dec_float_50 PI_Calculate();
 
 int main()
 {
         SetConsoleOutputCP(65001);
 
-        cout << "=== COMPARACIÓN DE MÉTODOS ===" << endl;
+        cpp_dec_float_50 pi_val = pi<cpp_dec_float_50>();
+        cpp_dec_float_50 pi_val_ByAtn = PI_Calculate();
 
-        CalculoPrecisoPI::compararMetodos<10>();
-        CalculoPrecisoPI::compararMetodos<20>();
-        CalculoPrecisoPI::compararMetodos<30>();
+        cout << "π - precisión 5 dígitos (por medio de 'Boost'): "
+             << setprecision(6) << pi_val << "\n";
+        cout << "π - precisión 10 dígitos (por medio de 'Boost'): "
+             << setprecision(11) << pi_val << "\n";
+        cout << "π - precisión 20 dígitos (por medio de 'Boost'): "
+             << setprecision(21) << pi_val << "\n";
+        cout << "π - precisión 30 dígitos (por medio de 'Boost'): "
+             << setprecision(31) << pi_val << "\n";
+
+        cout << "π - precisión 5 dígitos (por medio del 'ArcoTangente'): "
+             << setprecision(6) << pi_val_ByAtn << '\n';
+        cout << "π - precisión 10 dígitos (por medio del 'ArcoTangente'): "
+             << setprecision(11) << pi_val_ByAtn << '\n';
+        cout << "π - precisión 20 dígitos (por medio del 'ArcoTangente'): "
+             << setprecision(21) << pi_val_ByAtn << '\n';
+        cout << "π - precisión 30 dígitos (por medio del 'ArcoTangente'): "
+             << setprecision(31) << pi_val_ByAtn << '\n';
 
         return 0;
+}
+
+cpp_dec_float_50 PI_Calculate()
+{
+        cpp_dec_float_50 pi_val_ByAtn = 4 * atan(1);
+        return pi_val_ByAtn;
 }

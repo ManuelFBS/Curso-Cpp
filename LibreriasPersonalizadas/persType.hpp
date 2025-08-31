@@ -16,12 +16,12 @@ using Decimal40 = boost::multiprecision::cpp_dec_float<40>;
 using Decimal50 = boost::multiprecision::cpp_dec_float<50>;
 using Decimal100 = boost::multiprecision::cpp_dec_float<100>;
 
-// Alias para constantes matemáticas...
-template <typename T>
-using Pi = decltype(boost::math::constants::pi<T>());
+// // Alias para constantes matemáticas...
+// template <typename T>
+// using Pi = decltype(boost::math::constants::pi<T>());
 
-template <typename T>
-using E = decltype(boost::math::constants::e<T>());
+// template <typename T>
+// using E = decltype(boost::math::constants::e<T>());
 
 // Alias para aplicaciones específicas...
 using FinancialPrecision = Decimal20;
@@ -29,18 +29,30 @@ using EngineeringPrecision = Decimal30;
 using ScientificPrecision = Decimal50;
 using AstrophysicalPrecision = Decimal100;
 
-// Función personalizada para calcular π...
+// Funciones matemáticas...
 template <typename T>
-T calculatePI()
+T pi()
 {
         return boost::math::constants::pi<T>();
 }
 
-// Función personalizada para calcular 'e'...
 template <typename T>
-T calculateE()
+T e()
 {
         return boost::math::constants::e<T>();
+}
+
+// Funciones geométricas...
+template <typename T>
+T areaCircle(T radius)
+{
+        return pi<T>() * radius * radius;
+}
+
+template <typename T>
+T volumeSphere(T radius)
+{
+        return (4.0 / 3.0) * pi<T>() * radius * radius * radius;
 }
 }  // namespace mfbs
 

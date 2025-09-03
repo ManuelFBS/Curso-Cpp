@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 
+// #include "../LibreriasPersonalizadas/math_constants.hpp"
 #include "../LibreriasPersonalizadas/persMath.hpp"
 #include "../LibreriasPersonalizadas/persTypes.hpp"
 
@@ -15,6 +16,8 @@ int main()
         Dec10 radius;
         Dec10 area;
         Dec10 euler;
+        // Dec20 e = math_constants::e;
+        // Dec20 Pi = math_constants::Pi;
 
         cout << '\n'
              << " ******* CALCULO DEL AREA DE UN CIRCULO *******" << "\n\n";

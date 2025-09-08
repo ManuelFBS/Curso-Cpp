@@ -100,5 +100,6 @@
     "typeindex": "cpp",
     "valarray": "cpp"
   },
-  "C_Cpp.dimInactiveRegions": false
+  "C_Cpp.dimInactiveRegions": false,
+  "cmake.sourceDirectory": "C:/MFBS/Trabajo/Cursos/Curso Intensivo de C++/Curso-Cpp/vcpkg/ports/7zip"
 }
